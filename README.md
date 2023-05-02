@@ -14,7 +14,28 @@ The InkPreprocessor generates a JSON summary of a given ink! contract, which wil
 To generate a summary, run the following command:
 
 ```bash
-python3 summarizer.py <PATH_TO_METADATA_JSON>
+python3 inkutils/summarizer.py <PATH_TO_METADATA_JSON>
 ```
 
 where `<PATH_TO_METADATA_JSON>` is the path to the `metadata.json` file created when using `cargo contract` to build an ink! contract.
+
+## Installation
+
+This will install the summarizer into your current Python environment:
+
+```bash
+pip install .
+```
+
+Then you can use `ink-summarizer` anywhere by:
+
+```bash
+ink-summarizer <PATH_TO_METADATA_JSON>
+```
+
+To remove it, simply do:
+
+```bash
+pip uninstall inkutils
+```
+

@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+
+import sys
+import inkutils
+
+if(len(sys.argv) < 1):
+        print("Usage: summarizer.py [metadata files]")
+        sys.exit(1)
+
+inkutils.summarize(*sys.argv[1:])

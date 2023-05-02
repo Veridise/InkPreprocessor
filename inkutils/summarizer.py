@@ -8,15 +8,15 @@ def readMetadata(metadataList):
     summary = dict()
     summary["compiler"] = "cargo-contract"
     summary["version"] = readVersion(metadataList[0])
-    summary["contracts"] = [readContract(c) for c in metadataList]
+    summary["contracts"] = [readContract(metadataList[i], i) for i in range(len(metadataList))]
     return summary
 
 def readVersion(metadata):
     return metadata["source"]["language"]
 
-def readContract(metadata):
+def readContract(metadata, id):
     contractSpec = dict()
-    contractSpec["id"] = 0 # QUESTION: why 0?
+    contractSpec["id"] = id
     contractSpec["name"] = readContractName(metadata)
     impSpec = readContractSpec(metadata)
     contractSpec.update(impSpec)
@@ -190,6 +190,11 @@ def readType(typeSpec):
 
     return ty  
     
+def summarize(*args):
+    metadataList = [json.load(open(f)) for f in args]
+    summary = readMetadata(metadataList)
+    print(json.dumps(summary, indent=2))
+
 
 if __name__ == "__main__":
 
@@ -197,6 +202,4 @@ if __name__ == "__main__":
         print("Usage: summarizer.py [metadata files]")
         sys.exit(1)
 
-    metadataList = [json.load(open(f)) for f in sys.argv[1:]]
-    summary = readMetadata(metadataList)
-    print(json.dumps(summary, indent=2))
+    summarize(*sys.argv[1:])
