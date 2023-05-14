@@ -18,6 +18,7 @@ def readContract(metadata, id):
     contractSpec = dict()
     contractSpec["id"] = id
     contractSpec["name"] = readContractName(metadata)
+    contractSpec["kind"] = "contract" # FIXME: this could be "contract" or "interface"
     impSpec = readContractSpec(metadata)
     contractSpec.update(impSpec)
     return contractSpec
