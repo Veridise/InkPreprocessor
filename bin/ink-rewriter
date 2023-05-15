@@ -4,7 +4,7 @@ import sys
 import inkutils
 
 if(len(sys.argv) < 1):
-        print("Usage: ink-summarizer [metadata files]")
+        print("Usage: ink-rewriter [ll files]")
         sys.exit(1)
 
-inkutils.summarize(*sys.argv[1:])
+inkutils.rewrite(*sys.argv[1:])
